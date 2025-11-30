@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { ArrowRight, Apple, Play, Star, Mail } from "lucide-react";
-import { FaWhatsapp, FaWhatsappSquare } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
 const AppStoreButton = () => (
   <a
@@ -56,39 +59,74 @@ const PaymentIcons = () => {
 };
 
 const Footer = () => {
+  // Newsletter functionality
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/newsletter", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    if (res.status === 200) {
+      setStatus("success");
+      setEmail("");
+    } else if (res.status === 409) {
+      setStatus("duplicate");
+    } else {
+      setStatus("error");
+    }
+  };
+
   return (
     <footer className="bg-black text-white w-full momo px-10">
       <div className="container mx-auto">
+
         {/* Newsletter Section */}
         <div className="border-b border-white/20 py-8">
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
             <div className="flex items-center gap-4 lg:col-span-4">
-              <span className="text-xl font-medium tracking-widest">RuggedMuseCollection</span>
+              <span className="text-xl font-medium tracking-widest">
+                RuggedMuseCollection
+              </span>
               <div>
                 <p className="text-[5px] uppercase tracking-wider">
-                  Sign up to our newsletter  for tailored offers
+                  Sign up to our newsletter for tailored offers
                 </p>
-                
               </div>
             </div>
 
-           
-            <form className="flex w-full lg:col-span-4">
+            {/* Working Newsletter Form */}
+            <form onSubmit={handleSubmit} className="flex w-full lg:col-span-4">
               <input
                 type="email"
                 placeholder="EMAIL ADDRESS"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full border border-r-0 border-white/50 bg-transparent px-4 text-xs tracking-wider placeholder:text-white/50 focus:border-white focus:outline-none"
               />
               <button
                 type="submit"
                 className="flex items-center justify-center border border-white/50 px-4 transition-colors hover:bg-white/10"
               >
-                <span className="mr-2 text-xs uppercase tracking-wider">
-                  Submit
-                </span>
+                <span className="mr-2 text-xs uppercase tracking-wider">Submit</span>
                 <ArrowRight size={16} />
               </button>
             </form>
+
+            {/* Status Messages */}
+            {status && (
+              <p className="text-xs text-green-400 lg:col-span-4">
+                {status === "success" && "🎉 Subscribed successfully!"}
+                {status === "duplicate" && "✅ You are already subscribed!"}
+                {status === "error" && "❌ Something went wrong. Try again."}
+              </p>
+            )}
           </div>
         </div>
 
@@ -113,9 +151,8 @@ const Footer = () => {
 
             <div>
               <ul className="space-y-4 uppercase tracking-wider">
-                <li><Link href="#" className="hover:opacity-70">Instagram</Link></li>
-                <li><Link href="#" className="hover:opacity-70">Tiktok</Link></li>
-                <li><Link href="#" className="hover:opacity-70">Facebook</Link></li>
+                <li><Link href="https://www.instagram.com/ruggedmusecollection?igsh=Y3BoaGZ0ZGlrMWc4" className="hover:opacity-70">Instagram</Link></li>
+                <li><Link href="https://www.facebook.com/share/1ByNYJBr7U/" className="hover:opacity-70">Facebook</Link></li>
               </ul>
             </div>
 
@@ -134,8 +171,8 @@ const Footer = () => {
                   Shop via the Whatsapp or Email
                 </h4>
                 <div className="flex flex-col items-start gap-3 sm:flex-row lg:flex-col">
-                  <FaWhatsapp size={25}/>
-                  <Mail/>
+                  <FaWhatsapp size={25} />
+                  <Mail />
                 </div>
               </div>
 

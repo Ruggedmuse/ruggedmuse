@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import MovingText from "@/components/MovingText";
 import Properties from "@/components/Properties";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 
 
@@ -29,7 +30,7 @@ export default function Home() {
        <About/>
        <FeaturedProducts/>
        <Footer/>
-        
+        <WhatsAppButton/>
     </>
   );
 }

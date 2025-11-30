@@ -35,7 +35,7 @@ export default function CartPage() {
 
   const handleWhatsAppCheckout = () => {
     const message = generateWhatsAppMessage();
-    const phoneNumber = "923001234567"; // replace with your number (international format without +)
+    const phoneNumber = "923248912969"; // replace with your number (international format without +)
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, "_blank");
   };

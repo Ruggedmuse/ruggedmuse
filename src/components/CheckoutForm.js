@@ -116,7 +116,7 @@ export default function CheckoutForm({ onClose }) {
           <div className="flex-1 p-8">
             {/* Header */}
             <div className="flex justify-between items-center mb-8">
-              <h1 className="text-2xl font-bold">LUSTCRAFT</h1>
+              <h1 className="text-2xl font-bold">RuggedMuseCollection</h1>
               <button
                 onClick={onClose}
                 className="text-gray-500 hover:text-gray-700 text-2xl"
