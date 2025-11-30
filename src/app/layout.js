@@ -1,9 +1,29 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Mono, Pinyon_Script, Momo_Trust_Display } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
+import { CartProvider } from "@/context/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const momoTrustDisplay = Momo_Trust_Display({
+  variable: "--font-momoTrustDisplay",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const pinyonScript = Pinyon_Script({
+  variable: "--font-pinyonScript",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 const geistMono = Geist_Mono({
@@ -20,9 +40,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceMono.variable} ${pinyonScript.variable} ${momoTrustDisplay.variable}  antialiased`}
       >
+         <CartProvider>
+            <SmoothScroll/>
         {children}
+         </CartProvider>
       </body>
     </html>
   );
