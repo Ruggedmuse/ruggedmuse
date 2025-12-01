@@ -17,6 +17,11 @@ export default function Navbar() {
     setIsHome(pathname === "/");
   }, [pathname]);
 
+   const phoneNumber = "+923248912969"; // replace with your WhatsApp number
+  const message = "Hello, I'm interested in your products!"; // default message
+
+  const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
   // Menu Data
   const menuItems = [
     {
@@ -53,9 +58,14 @@ export default function Navbar() {
       title: "Accessories",
       slug: "accessories",
       links: [
-        { title: "Caps", href: "#" },
-        { title: "Bags", href: "#" },
-        { title: "Watches", href: "#" },
+        { title: "Caps", href: "/categories/caps" },
+        { title: "Hats", href: "/categories/hats" },
+        { title: "Bed sheets", href: "/categories/bed-sheets" },
+        { title: "Sofa covers", href: "/categories/sofa-covers" },
+        { title: "Belts", href: "/categories/belts" },
+        { title: "Wallets", href: "/categories/wallets" },
+        { title: "Men UnderWear", href: "/categories/men-underwear" },
+        { title: "Women UnderWear", href: "/categories/women-underwear" },
       ],
     },
   ];
@@ -122,8 +132,8 @@ export default function Navbar() {
               </div>
             ))}
 
-            <Link href="#" className="hover:text-gray-300 transition">About</Link>
-            <Link href="#" className="hover:text-gray-300 transition">Contact</Link>
+            
+            <Link href={url} target="_blank" className="hover:text-gray-300 transition">Contact</Link>
 
             {/* CART ICON (Desktop) */}
              <Link
@@ -184,7 +194,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden bg-white text-black border-t transition-all duration-300 overflow-hidden
-        ${isMobileOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}
+        ${isMobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}
       `}
       >
         <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
@@ -211,11 +221,11 @@ export default function Navbar() {
               </svg>
             </button>
 
-            <div
-              className={`transition-all duration-300 overflow-hidden
-              ${openDropdown === item.slug ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}
-            `}
-            >
+           <div
+  className={`transition-all duration-300 overflow-hidden
+  ${openDropdown === item.slug ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}
+`}
+>
               {item.links.map((link) => (
                 <Link
                   key={link.title}
@@ -229,8 +239,8 @@ export default function Navbar() {
           </div>
         ))}
 
-        <Link href="#" className="block px-4 py-2 hover:bg-gray-100">About</Link>
-        <Link href="#" className="block px-4 py-2 hover:bg-gray-100">Contact</Link>
+        
+        <Link href={url} target="_blank" className="block px-4 py-2 hover:bg-gray-100">Contact</Link>
       </div>
     </nav>
   );

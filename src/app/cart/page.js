@@ -180,7 +180,7 @@ export default function CartPage() {
                     className="w-full flex items-center justify-center gap-2 border py-3 rounded-sm font-medium hover:bg-black hover:text-white transition"
                   >
                     <CreditCard size={18} />
-                    Checkout with Card
+                    Order via Email
                   </button>
 
                   <button

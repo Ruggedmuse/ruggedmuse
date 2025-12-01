@@ -17,7 +17,7 @@ const categories = [
   },
   {
     title: "Goods",
-    href: "/collections/goods",
+    href: "/goods",
     imageUrl: "/images/things.jpg",
   },
 ];
